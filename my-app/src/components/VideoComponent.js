@@ -61,7 +61,7 @@ class VideoComponent extends React.Component {
     console.log("this is the state of game",this.state.game)
     return (
       <div>
-      {this.state.game ?
+      {!this.state.game ?
         <Grid celled>
         <Grid.Row>
           <Grid.Column width={11}>
@@ -80,7 +80,7 @@ class VideoComponent extends React.Component {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      : <Game/>}
+      : <Game lose={()=>{this.setState({game: false})}}/>}
 
 
     </div>
