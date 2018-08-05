@@ -1,0 +1,30 @@
+.ui.button {
+  padding: .58571429em .5em .58571429em;
+  display: inline-block;
+  float: right;
+}
+
+.ui.animated.button .visible.content {
+  margin-right: .6em;
+  display: inline-block;
+  float:left;
+}
+
+.searchBar {
+  display: inline-block;
+  width: 100%;
+  padding-left: 0em;
+  padding-right: 0em;
+  padding-bottom: 1%;
+}
+
+.ui.search .prompt {
+  width: 6em;
+  float: left;
+  display: inline-block;
+}
+
+.ui.search {
+  float: left;
+  margin-right: 0em;
+}

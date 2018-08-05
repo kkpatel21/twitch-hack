@@ -6,6 +6,8 @@
   height: 20em;
   max-height: 20em;
   overflow: scroll;
+  padding-left: 0em;
+  padding-right: 0em;
 }
 
 body ::-webkit-scrollbar {

@@ -24,7 +24,7 @@ class VideoComponent extends React.Component {
 
             <div className="music">
               <SearchContainer />
-              Put The Library In Here
+              Welcome {this.props.user}
 
             </div>
           </Grid.Column>
