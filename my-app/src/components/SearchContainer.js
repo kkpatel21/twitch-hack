@@ -15,7 +15,7 @@ export default class SearchContainer extends Component {
   }
 
   componentDidMount () {
-    axios.get('http://localhost:4000/searchSong?song=a')
+    axios.get('https://4167c069.ngrok.io/searchSong?song=a')
       .then((res)=>{
         console.log(res)
         this.setState({
@@ -30,7 +30,7 @@ export default class SearchContainer extends Component {
 
   onSubmit = () => {
     console.log('clicked submit');
-    axios.get('http://localhost:4000/searchSong' + '?song=' + this.state.searchValue)
+    axios.get('https://4167c069.ngrok.io/searchSong' + '?song=' + this.state.searchValue)
       .then(res => {
         console.log('results of search', res);
         this.setState({
@@ -53,7 +53,7 @@ export default class SearchContainer extends Component {
           volume = "1"
           onPlay ={()=>{this.props.delayedPop()}}
          />
-         <Button onClick={()=>this.setState({muted: !this.state.muted})}>{this.state.muted ? 'Mute' : 'UnMute'}</Button>
+         <Button onClick={()=>this.setState({muted: !this.state.muted})}>{this.state.muted ? 'Unmute' : 'Mute'}</Button>
         <Search
          onSearchChange={(e)=>this.handleSearchChange(e)}
         />
