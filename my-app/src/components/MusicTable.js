@@ -20,10 +20,10 @@ class MusicTable extends React.Component {
           <Popup
             trigger={<Table.Cell>
             <Label ribbon>Current</Label>{this.props.queue[this.props.queue.length-1].name}
-          </Table.Cell>}
-          content="In this popup, the artist and song should show up"
-          size="tiny"
-          />
+          </Table.Cell>} flowing hoverable>
+          <Header as='h5'>{this.props.queue[this.props.queue.length-1].name}</Header>
+          <Header as='h6'>User: {this.props.queue[this.props.queue.length-1].user} Score: </Header>
+         </Popup>
           <Divider />
           {this.props.queue.slice(0,this.props.queue.length-1).reverse().map((song) => {
             return (
@@ -31,39 +31,14 @@ class MusicTable extends React.Component {
                 <Popup
                   trigger={<Table.Cell>
                   {song.name}
-                </Table.Cell>}
-                content="In this popup, the artist and song should show up"
-                size="tiny"
-                />
+                </Table.Cell>} flowing hoverable>
+                <Header as='h5'>{song.name}</Header>
+                <Header as='h6'>{song.user}</Header>
+                </Popup>
                 <Divider />
               </span>
             )
           })}
-          <Popup
-            trigger={<Table.Cell>
-            Some Song
-          </Table.Cell>}
-          content="In this popup, the artist and song should show up"
-          size="tiny"
-          />
-          <Divider />
-          <Popup
-            trigger={<Table.Cell>
-            Some Song
-          </Table.Cell>}
-          content="In this popup, the artist and song should show up"
-          size="tiny"
-          />
-          <Divider />
-          <Popup
-            trigger={<Table.Cell>
-            Some Song
-          </Table.Cell>}
-          content="In this popup, the artist and song should show up"
-          size="tiny"
-          />
-          <Divider />
-
         </Table.Row>
       </Table>
     );

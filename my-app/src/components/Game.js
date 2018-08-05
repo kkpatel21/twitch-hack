@@ -112,7 +112,6 @@ Blob.prototype.setY = function(y) {
 
 //checks if one blob intersects another Blob or Enemy
 Blob.prototype.intersects = function (other) {
-    // console.log(other);
     var dx = this.getX() - other.getX();
     var dy = this.getY() - other.getY();
     var distance_squared = (dx * dx + dy * dy);
@@ -137,7 +136,6 @@ Player.prototype.move = function(mvt) {
              var $elt = this.$div;
              var left = parseInt($elt.css("left"),10);
              var x = left+100; // radius is 100
-             console.log("x is now "+x);
          }
     });
     this.x += mvt;
@@ -148,7 +146,6 @@ Player.prototype.move = function(mvt) {
 Player.prototype.shrink = function(shrinkDiam) {
     var player = this;
     player.setDiameter (player.diameter - shrinkDiam);
-    // console.log(player);
     player.$div.animate({width: player.diameter + 'px', height: player.diameter + 'px'},
     {duration: 10, progress: function(){
         if(player.diameter <= losingDiameter){
@@ -156,7 +153,6 @@ Player.prototype.shrink = function(shrinkDiam) {
             gameOver = true;
         }
     }, complete: function(){
-        console.log('complete shrinking')
     }
     });
 };
@@ -168,7 +164,6 @@ Player.prototype.collide = function(enemy) {
     enemy.hasCollided = true;
     if(enemy.diameter > this.diameter){
         this.shrink(shrinkDiameter);
-        // console.log("SHRINK: " + shrinkDiameter);
     }
     // if(enemy.diameter <= this.diameter){
     //     this.grow(growDiameter);
@@ -241,30 +236,25 @@ Enemy.prototype.start = function() {
             if (enemy.direction === 1){
                 top = parseInt($elt.css("top"),10);
                 y = top-(enemy.diameter/2);
-                // console.log("y is now "+ y);
                 enemy.setY(y);
 
             } else if (enemy.direction === 2){
                 left = parseInt($elt.css("left"),10);
                 x = left + (enemy.diameter/2);
-                // console.log("x is now "+ x);
                 enemy.setX(x);
 
             } else if (enemy.direction === 3){
                 top = parseInt($elt.css("top"),10);
                 y = top - (enemy.diameter/2);
-                // console.log('y is now ' + y)
                 enemy.setY(y);
 
             } else if (enemy.direction === 4){
                 left = parseInt($elt.css("left"),10);
                 x = left + (enemy.diameter/2);
-                // console.log("x is now "+ x);
                 enemy.setX(x);
             }
 
             if (p.intersects(enemy)){
-                console.log("intersected");
                 enemy.maybeCollide();
                 enemy.$div.remove();
             }
@@ -277,7 +267,6 @@ Enemy.prototype.start = function() {
 //do we have to set x and y if already set in animate
 Enemy.prototype.maybeCollide = function() {
     if (this.hasCollided){
-        console.log('has already collided');
     } else {
     //update x and y --> this happens in animate
 
@@ -339,9 +328,9 @@ Enemy.prototype.remove = function() {
 
 var loseGame = function(){
     if (gameOver){
-      console.log('LOST')
         $('.circle').stop();
-        // $(document).off('mousemove', )
+        // $(document).off('mouseout', function(event){
+        // })
         // enemy.$div.stop();
         // p.$div.stop();
         $('#game-board').html();
@@ -383,7 +372,6 @@ timer(){
 }
 //Starting game
 startGame(){
-    console.log("game has been started");
     this.timer()
     p = new Player();
     p.setColor('blue');
@@ -391,7 +379,6 @@ startGame(){
     p.addToGame();
 
     $(document).on('mousemove', function (event) {
-        // console.log(p);
         //source: https://www.w3schools.com/jquery/event_mousemove.asp
         p.setX(event.pageX);
         p.setY(event.pageY);
@@ -400,7 +387,6 @@ startGame(){
     setInterval(function () {
         var e = new Enemy();
         e.start();
-        // console.log("Enemy coming in: " + e);
     }, window.innerWidth/2); //so it's not easier on a larger screen
 
   }
