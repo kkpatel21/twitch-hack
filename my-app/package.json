@@ -8,6 +8,7 @@
     "react": "^16.4.2",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.2",
+    "react-player": "^1.6.4",
     "react-scripts": "1.1.4",
     "semantic-ui-react": "^0.82.1"
   },

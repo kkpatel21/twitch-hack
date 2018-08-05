@@ -4,7 +4,7 @@ import { Button, Icon, Grid, Segment, Container, Header, Divider} from 'semantic
 //Components
 import MusicTable from './MusicTable';
 import './VideoComponent.css'
-import SearchContainer from '../SearchContainer'
+import SearchContainer from './SearchContainer'
 
 
 class VideoComponent extends React.Component {

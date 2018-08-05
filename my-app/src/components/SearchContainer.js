@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card, Image, Search, Button, Icon } from 'semantic-ui-react'
 import axios from 'axios';
 import SongTile from './SongTile'
+import ReactPlayer from 'react-player'
 
 export default class SearchContainer extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ export default class SearchContainer extends Component {
     this.state = {
       results: [],
       searchValue:"",
+      playing: true,
     }
   }
 
@@ -61,7 +63,12 @@ export default class SearchContainer extends Component {
     const {results} = this.state
     return (
         <div>
-
+          <ReactPlayer url='https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=690235746&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533458085&oauth_version=1.0&shopId=2020&trackId=2447235&oauth_signature=sWviPi7aCvIvsgDqwzNJSUGA0hY%3D'
+          playing={this.state.playing}
+          width = "0px"
+          height = "0px"
+         />
+         <Button onClick={()=>this.setState({playing: !this.state.playing})}>{this.state.playing ? 'Pause' : 'Play'}</Button>
         <Search
          onSearchChange={(e)=>this.handleSearchChange(e)}
         />
@@ -75,7 +82,7 @@ export default class SearchContainer extends Component {
         <div className="results-container">
           {results.map((song, i) => <SongTile src={song.track.release.image} title={song.track.title} artist={song.track.artist.name} key={i}/>)}
         </div>
-        
+
       </div>
 
 
