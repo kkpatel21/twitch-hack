@@ -1,11 +1,13 @@
 import React from 'react';
 import $ from 'jquery';
 
+import Timer from './Timer'
 
+//Random component of game
 var random = (function () {
 
     var colors = ["AliceBlue","Aqua","Aquamarine","Bisque","Black","BlanchedAlmond",
-//                  "Blue",
+                "Blue",
                   "BlueViolet","Brown","BurlyWood","CadetBlue","Chartreuse","Chocolate","Coral","CornflowerBlue","Crimson","Cyan","DarkBlue","DarkCyan","DarkGoldenRod","DarkGray","DarkGreen","DarkKhaki","DarkMagenta","DarkOliveGreen","Darkorange","DarkOrchid","DarkRed","DarkSalmon","DarkSeaGreen","DarkSlateBlue","DarkSlateGray","DarkSlateGrey","DarkTurquoise","DarkViolet","DeepPink","DeepSkyBlue","DimGray","DodgerBlue","FireBrick","ForestGreen","Fuchsia","Gainsboro","Gold","GoldenRod","Green","GreenYellow","HotPink","IndianRed","Indigo","Khaki","Lavender","LawnGreen","LemonChiffon","LightBlue","Lime","LimeGreen","Magenta","Maroon","MediumAquaMarine","MediumBlue","MediumOrchid","MediumPurple","MediumSeaGreen","MediumSlateBlue","MediumSpringGreen","MediumTurquoise","MediumVioletRed","MidnightBlue","MistyRose","Moccasin","Navy","Olive","OliveDrab","Orange","OrangeRed","Orchid","PaleGoldenRod","PaleGreen","PaleTurquoise","PaleVioletRed","Peru","Pink","Plum","PowderBlue","Purple","Red","RosyBrown","RoyalBlue","SaddleBrown","Salmon","SandyBrown","SeaGreen","Sienna","Silver","SkyBlue","SlateBlue","SpringGreen","SteelBlue","Tan","Teal","Thistle","Tomato","Turquoise","Violet","Wheat","Yellow","YellowGreen"];
 
     function intBelow(max) {
@@ -30,13 +32,15 @@ var random = (function () {
             color: color};
 })();
 
-
+//Main javascript for game
 var modulo = (window.innerHeight/2)%5;
 var winningDiameter = (window.innerHeight/2) - modulo; // bigger than this wins
 var losingDiameter = 10;                     // smaller than this loses
 var growDiameter = 20;                      // grow by this many pixels
 var shrinkDiameter = 5;                     // shrink by this many pixels
-var p;                                      //player of the game
+var p;                                     //player of the game
+var win = false;
+var lose = false;
 
 var gameOver = false;
 
@@ -151,7 +155,7 @@ Player.prototype.grow = function(growDiam) {
        if(player.diameter >= winningDiameter){
             winGame();
             gameOver = true;
-            console.log("won!");
+            win = true;
         }
     }, complete: function(){
         console.log('complete growing')
@@ -167,7 +171,7 @@ Player.prototype.shrink = function(shrinkDiam) {
         if(player.diameter <= losingDiameter){
             loseGame();
             gameOver = true;
-            console.log("lose!");
+            lose = true;
         }
     }, complete: function(){
         console.log('complete shrinking')
@@ -394,14 +398,26 @@ class Game extends React.Component {
     super(props, context);
 
     this.state = {
-
+      win: win,
+      lose: lose,
+      timer: 0
     };
   }
 
+componentDidMount(){
+  this.timer()
+}
 
-
-
-
+componentWillUnmount(){
+  clearInterval(this.state.intervalId)
+}
+timer(){
+  var intervalId = setInterval(() => {
+    this.setState({timer: this.state.timer + 1})
+  }, 1000);
+  this.setState({intervalId})
+}
+//Starting game
 startGame(){
     console.log("game has been started");
     p = new Player();
@@ -430,6 +446,9 @@ startGame(){
         <link rel="stylesheet" href="./game-stylesheets/styles.css"></link>
 
         <button onClick={this.startGame} id="start">Start Game</button>
+        <div>
+           {this.state.timer < 60 ? '0' : `${Math.floor(this.state.timer/60)}`} : {(this.state.timer%60) < 10 ? `0${this.state.timer%60}` : `${this.state.timer%60}`}
+         </div>
         <div id="game-board"></div>
       </div>
     );
