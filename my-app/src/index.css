@@ -2,6 +2,7 @@ body {
   font-family: sans-serif;
   background: #6441A4;
   height: 20em;
+  line-height: .85em;
 }
 
 #root {

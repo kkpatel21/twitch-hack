@@ -3,6 +3,8 @@ import { Card, Image, Search, Button, Icon } from 'semantic-ui-react'
 import axios from 'axios';
 import SongTile from './SongTile'
 import ReactPlayer from 'react-player'
+import './SearchContainer.css'
+import Results from './Results'
 
 export default class SearchContainer extends Component {
   constructor(props) {
@@ -43,8 +45,15 @@ export default class SearchContainer extends Component {
     console.log("results", this.state.results);
     console.log("yo momsz",this.state.searchValue)
     const {results} = this.state
+    let songTileRender;
+    results.map((song, i) => {
+      if (i%3 === 0) {
+
+      }
+    })
     return (
-        <div>
+      <div>
+        <div className="searchBar">
           <ReactPlayer url={this.props.queue[this.props.queue.length-1].url}
           muted={this.state.muted}
           playing = {true}
@@ -53,22 +62,23 @@ export default class SearchContainer extends Component {
           volume = "1"
           onPlay ={()=>{this.props.delayedPop()}}
          />
-         <Button onClick={()=>this.setState({muted: !this.state.muted})}>{this.state.muted ? 'Unmute' : 'Mute'}</Button>
-        <Search
-         onSearchChange={(e)=>this.handleSearchChange(e)}
-        />
-        <Button animated onClick={()=>this.onSubmit()}>
-          <Button.Content visible>Search</Button.Content>
-          <Button.Content hidden>
-          <Icon name='search' />
-          </Button.Content>
-        </Button>
+          <Search
+           onSearchChange={(e)=>this.handleSearchChange(e)}
+          />
 
-        <div className="results-container">
-          {results.map((song, i) => <SongTile src={song.track.release.image} title={song.track.title} artist={song.track.artist.name} key={i}/>)}
-        </div>
+          <Button onClick={()=>this.setState({muted: !this.state.muted})}>{this.state.muted ? <Icon name="mute" /> : <Icon name="unmute" />}</Button>
+          <Button animated onClick={()=>this.onSubmit()}>
+            <Button.Content visible>Search</Button.Content>
+            <Button.Content hidden>
+            <Icon name='search' />
+            </Button.Content>
+          </Button>
+
+
 
       </div>
+      <Results results={this.state.results}/>
+    </div>
 
 
     );

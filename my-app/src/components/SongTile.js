@@ -3,20 +3,26 @@ import { Card, Image, Search, Popup } from 'semantic-ui-react'
 import './SongTile.css'
 
 
-const CardExampleCard = ({title,src,artist}) => (
-  <Card>
+const CardExampleCard = ({title,src,artist}) => {
+  let tempTitle = title
+  if (title.length > 12) {
+    tempTitle = title.substring(0, 7) + '...'
+  }
+
+  return (
     <Popup
-      trigger={<Image src={src} size="mini"/>}
+      trigger={<Card>
+                <Image src={src} size="mini"/>
+                <Card.Content>
+                  <Card.Description>{tempTitle}</Card.Description>
+                </Card.Content>
+              </Card>}
       header={title}
       content={artist}
 
     />
-
-    <Card.Content>
-      <Card.Description>{title}</Card.Description>
-    </Card.Content>
-  </Card>
-)
+  )
+}
 
 export default class SongTile extends Component {
   render() {
