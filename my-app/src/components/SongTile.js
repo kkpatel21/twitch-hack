@@ -21,7 +21,8 @@ export default class SongTile extends Component {
                   </Card>} flowing hoverable>
         <Header as='h4'>{title}</Header>
         <Header as='h5'>{artist}</Header>
-        <Button onClick={()=>{console.log('clicked');this.props.queueSong('hi',title)}}>Add To Queue</Button>
+        <p>{this.props.user}</p>
+        <Button onClick={()=>{console.log('clicked');this.props.queueSong('hi',title, this.props.user)}}>Add To Queue</Button>
         </Popup>
       )
     }

@@ -341,9 +341,9 @@ var loseGame = function(){
     if (gameOver){
       console.log('LOST')
         $('.circle').stop();
-        // $(document).off('mousemove', )
-        // enemy.$div.stop();
+        enemy.$div.stop();
         // p.$div.stop();
+        window.removeEventListener('mousemove')
         $('#game-board').html();
         lose();
 

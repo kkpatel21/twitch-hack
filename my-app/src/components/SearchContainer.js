@@ -73,7 +73,7 @@ export default class SearchContainer extends Component {
 
 
       </div>
-      <Results results={this.state.results} queueSong={(a,b)=>this.props.queueSong(a,b)}/>
+      <Results results={this.state.results} user={this.props.user} queueSong={(a,b)=>this.props.queueSong(a,b)}/>
     </div>
 
 

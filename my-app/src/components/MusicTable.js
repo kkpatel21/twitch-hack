@@ -8,7 +8,7 @@ class MusicTable extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      songsPicked: [{position: 1, song: 'hello', artist: 'world', bits: 3}]
+    
     };
   }
 
@@ -21,7 +21,7 @@ class MusicTable extends React.Component {
             trigger={<Table.Cell>
             <Label ribbon>Current</Label>{this.props.queue[this.props.queue.length-1].name}
           </Table.Cell>}
-          content="In this popup, the artist and song should show up"
+          content={this.props.queue.name}
           size="tiny"
           />
           <Divider />
@@ -32,7 +32,7 @@ class MusicTable extends React.Component {
                   trigger={<Table.Cell>
                   {song.name}
                 </Table.Cell>}
-                content="In this popup, the artist and song should show up"
+                content={song.name}
                 size="tiny"
                 />
                 <Divider />

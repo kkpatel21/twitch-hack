@@ -23,7 +23,7 @@ class App extends Component {
         this.setState({
           user: payload.user_id
         })
-        console.log('Ayeeee')
+        console.log('Ayeeee', this.state.user)
       }
     })
   }
