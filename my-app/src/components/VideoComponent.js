@@ -7,9 +7,9 @@ import './VideoComponent.css'
 import SearchContainer from './SearchContainer'
 
 let queue = [
-  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=533838273&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533463605&oauth_version=1.0&shopId=2020&trackId=5508078&oauth_signature=sr1kOwLu%2FFdjrh3LUmKloBCTJeg%3D', name: 'Sweet Caroline'},
-  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=533838273&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533463605&oauth_version=1.0&shopId=2020&trackId=2447235&oauth_signature=XoxvTTnzxTdXDVeAbSN5OMrHjrM%3D', name: 'A Thousand Miles'},
-  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=533838273&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533463605&oauth_version=1.0&shopId=2020&trackId=2675967&oauth_signature=wX8ko%2BPJxcXy%2FrnfsZfJrK8DWsw%3D', name: 'A Little Less Talk And A Lot More Action'}
+  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=599588842&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533482120&oauth_version=1.0&shopId=2020&trackId=5508078&oauth_signature=lPIBMpsv2m6jDcOBNGiPT9cKB4w%3D', name: 'Sweet Caroline'},
+  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=832121695&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533482143&oauth_version=1.0&shopId=2020&trackId=2447235&oauth_signature=9MJkRofL5tgzN75h1%2Fvci7lFzUE%3D', name: 'A Thousand miles'},
+  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=859993742&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533482166&oauth_version=1.0&shopId=2020&trackId=2675967&oauth_signature=mfbRy1vdgoA4iIruKgIN9mqQLG0%3D', name: 'A Little Less Talk And A Lot More Action'}
 ]
 
 
@@ -42,17 +42,20 @@ class VideoComponent extends React.Component {
   }
 
   delayedPop(){
-    setTimeout(()=>{this.popSong();console.log('new song after 60')}, 60000)
+    setTimeout(()=>{this.popSong(); console.log('new song after 15')}, 15000)
   }
 
   render() {
+    console.log('queue is', this.state.queue);
     return (
+      <div>
         <Grid celled>
           <Grid.Row>
             <Grid.Column width={11}>
 
               <div className="music">
                 <SearchContainer queueSong={()=>this.queueSong()} popSong={()=>this.popSong()} delayedPop={()=>this.delayedPop()} queue={this.state.queue}/>
+                Put The Library In Here
 
               </div>
             </Grid.Column>
@@ -65,6 +68,7 @@ class VideoComponent extends React.Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
+      </div>
     );
   }
 }

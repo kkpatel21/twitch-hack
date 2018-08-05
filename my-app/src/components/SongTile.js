@@ -25,10 +25,6 @@ const CardExampleCard = ({title,src,artist}) => {
 }
 
 export default class SongTile extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     // console.log('props', this.props);
     return (
