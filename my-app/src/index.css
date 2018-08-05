@@ -1,5 +1,9 @@
 body {
-  margin: 0;
-  padding: 0;
   font-family: sans-serif;
+  background: #6441A4;
+  height: 20em;
+}
+
+#root {
+  height: 20em
 }
