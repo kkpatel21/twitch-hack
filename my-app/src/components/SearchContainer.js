@@ -68,10 +68,12 @@ export default class SearchContainer extends Component {
             </Button.Content>
           </Button>
 
+          {/* <Button onClick={(a,b)=>this.props.queueSong(a,b)}>press me!</Button> */}
+
 
 
       </div>
-      <Results results={this.state.results} />
+      <Results results={this.state.results} queueSong={(a,b)=>this.props.queueSong(a,b)}/>
     </div>
 
 
