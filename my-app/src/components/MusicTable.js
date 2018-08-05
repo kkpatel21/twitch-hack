@@ -18,12 +18,26 @@ class MusicTable extends React.Component {
         <Table.Row>
           <Popup
             trigger={<Table.Cell>
-            <Label ribbon>Current</Label> Song Name
+            <Label ribbon>Current</Label> Song Name {this.props.queue[this.props.queue.length-1].name}
           </Table.Cell>}
           content="In this popup, the artist and song should show up"
           size="tiny"
           />
           <Divider />
+          {this.props.queue.reverse().slice(1).map((song) => {
+            return (
+              <span>
+                <Popup
+                  trigger={<Table.Cell>
+                  {song.name}
+                </Table.Cell>}
+                content="In this popup, the artist and song should show up"
+                size="tiny"
+                />
+                <Divider />
+              </span>
+            )
+          })}
           <Popup
             trigger={<Table.Cell>
             Some Song
@@ -48,53 +62,7 @@ class MusicTable extends React.Component {
           size="tiny"
           />
           <Divider />
-          <Popup
-            trigger={<Table.Cell>
-            Some Song
-          </Table.Cell>}
-          content="In this popup, the artist and song should show up"
-          size="tiny"
-          />
-          <Divider />
-          <Popup
-            trigger={<Table.Cell>
-            Some Song
-          </Table.Cell>}
-          content="In this popup, the artist and song should show up"
-          size="tiny"
-          />
-          <Divider />
-          <Popup
-            trigger={<Table.Cell>
-            Some Song
-          </Table.Cell>}
-          content="In this popup, the artist and song should show up"
-          size="tiny"
-          />
-          <Divider />
-          <Popup
-            trigger={<Table.Cell>
-            Some Song
-          </Table.Cell>}
-          content="In this popup, the artist and song should show up"
-          size="tiny"
-          />
-          <Divider />
-          <Popup
-            trigger={<Table.Cell>
-            Some Song
-          </Table.Cell>}
-          content="In this popup, the artist and song should show up"
-          size="tiny"
-          />
-          <Divider />
-          <Popup
-            trigger={<Table.Cell>
-            Some Song
-          </Table.Cell>}
-          content="In this popup, the artist and song should show up"
-          size="tiny"
-          />
+
         </Table.Row>
       </Table>
     );
