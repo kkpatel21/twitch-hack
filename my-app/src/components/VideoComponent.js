@@ -20,7 +20,8 @@ class VideoComponent extends React.Component {
 
     this.state = {
       queue: queue,
-      game: false
+      game: false,
+      score: null,
     };
 
     this.queueSong = this.queueSong.bind(this);
@@ -61,6 +62,8 @@ class VideoComponent extends React.Component {
     console.log("this is the state of game",this.state.game)
     return (
       <div>
+        <Button onClick={()=>this.setState({game:!this.state.game})}>play game</Button>
+        last score: {this.state.score}
       {!this.state.game ?
         <Grid celled>
         <Grid.Row>
@@ -80,7 +83,7 @@ class VideoComponent extends React.Component {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      : <Game lose={()=>{this.setState({game: false})}}/>}
+      : <Game lose={(timer)=>{this.setState({game: false, score: timer})}}/>}
 
 
     </div>
