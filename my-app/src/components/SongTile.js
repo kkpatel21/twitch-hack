@@ -4,10 +4,6 @@ import './SongTile.css'
 
 
 export default class SongTile extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const CardExampleCard = ({title,src,artist}) => {
       let tempTitle = title
@@ -25,7 +21,7 @@ export default class SongTile extends Component {
                   </Card>} flowing hoverable>
         <Header as='h4'>{title}</Header>
         <Header as='h5'>{artist}</Header>
-        <Button onClick={()=>this.props.addSong(src,title)}>Add To Queue</Button>
+        <Button onClick={()=>{console.log('clicked');}}>Add To Queue</Button>
         </Popup>
       )
     }

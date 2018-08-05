@@ -8,9 +8,9 @@ import SearchContainer from './SearchContainer';
 import Game from './Game';
 
 let queue = [
-  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=121395987&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533480008&oauth_version=1.0&shopId=2020&trackId=5508078&oauth_signature=XDRGb%2B0fBVNQTW7hfdB8OsDGF%2FU%3D', name: 'Sweet Caroline'},
-  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=903720884&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533480047&oauth_version=1.0&shopId=2020&trackId=2447235&oauth_signature=E%2FcSilJi98Ujo59V%2BJYuc12RXGo%3D', name: 'A Thousand Miles'},
-  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=213657416&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533480071&oauth_version=1.0&shopId=2020&trackId=2675967&oauth_signature=2XLoySQ2ZNNnx6GXCQjWT8CijbU%3D', name: 'A Little Less Talk And A Lot More Action'}
+  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=599588842&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533482120&oauth_version=1.0&shopId=2020&trackId=5508078&oauth_signature=lPIBMpsv2m6jDcOBNGiPT9cKB4w%3D', name: 'Sweet Caroline'},
+  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=832121695&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533482143&oauth_version=1.0&shopId=2020&trackId=2447235&oauth_signature=9MJkRofL5tgzN75h1%2Fvci7lFzUE%3D', name: 'A Thousand miles'},
+  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=859993742&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533482166&oauth_version=1.0&shopId=2020&trackId=2675967&oauth_signature=mfbRy1vdgoA4iIruKgIN9mqQLG0%3D', name: 'A Little Less Talk And A Lot More Action'}
 ]
 
 
@@ -44,23 +44,24 @@ class VideoComponent extends React.Component {
     })
   }
 
-  addSong(url,title){
-    let addQueue = this.state.queue.slice();
-    addQueue.unshift({url: url, name: title})
-    this.setState({
-      queue: addQueue,
-    })
-  }
+  // addSong(url,title){
+  //   let addQueue = this.state.queue.slice();
+  //   addQueue.unshift({url: url, name: title})
+  //   this.setState({
+  //     queue: addQueue,
+  //   })
+  // }
 
   delayedPop(){
     setTimeout(()=>{this.popSong();console.log('new song after 60')}, 10000)
   }
 
   render() {
-    // console.log("this is the queue",this.state.queue)
+    console.log("this is the state of game",this.state.game)
     return (
       <div>
-      {this.state.game ? <Grid celled>
+      {!this.state.game ?
+        <Grid celled>
         <Grid.Row>
           <Grid.Column width={11}>
 
@@ -77,7 +78,8 @@ class VideoComponent extends React.Component {
             </div>
           </Grid.Column>
         </Grid.Row>
-      </Grid> : <Game/>}
+      </Grid>
+      : <Game/>}
 
 
     </div>

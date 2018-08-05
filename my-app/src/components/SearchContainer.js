@@ -51,8 +51,8 @@ export default class SearchContainer extends Component {
           <ReactPlayer url={this.props.queue[this.props.queue.length-1].url}
           muted={this.state.muted}
           playing = {true}
-          width = "0px"
-          height = "0px"
+          width = "100px"
+          height = "50px"
           volume = "1"
           onPlay ={()=>{this.props.delayedPop()}}
          />
@@ -71,7 +71,7 @@ export default class SearchContainer extends Component {
 
 
       </div>
-      <Results results={this.state.results} addSong={()=>this.props.addSong()}/>
+      <Results results={this.state.results} />
     </div>
 
 
