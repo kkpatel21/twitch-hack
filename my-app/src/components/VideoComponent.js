@@ -42,7 +42,7 @@ class VideoComponent extends React.Component {
   }
 
   delayedPop(){
-    setTimeout(()=>{this.popSong()},15000)
+    setTimeout(()=>{this.popSong();console.log('new song after 60')}, 60000)
   }
 
   render() {
@@ -62,7 +62,7 @@ class VideoComponent extends React.Component {
               <Header as='h5' icon='music' content='Queue' className='queue' />
               <Divider />
               <div>
-                <MusicTable />
+                <MusicTable queue={this.state.queue}/>
               </div>
             </Grid.Column>
           </Grid.Row>
