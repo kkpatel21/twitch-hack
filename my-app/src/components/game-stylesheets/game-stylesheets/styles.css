@@ -1,0 +1,19 @@
+.circle{
+    border-radius: 50%;
+    position: absolute;
+    background-color:red;
+
+}
+
+.intro {
+    text-align: center;
+}
+
+
+.body {
+    overflow: hidden;
+}
+
+#game-board {
+    overflow: hidden;
+}

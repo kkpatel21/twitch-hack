@@ -45,12 +45,6 @@ export default class SearchContainer extends Component {
     console.log("results", this.state.results);
     console.log("yo momsz",this.state.searchValue)
     const {results} = this.state
-    let songTileRender;
-    results.map((song, i) => {
-      if (i%3 === 0) {
-
-      }
-    })
     return (
       <div>
         <div className="searchBar">
@@ -77,7 +71,7 @@ export default class SearchContainer extends Component {
 
 
       </div>
-      <Results results={this.state.results}/>
+      <Results results={this.state.results} addSong={()=>this.props.addSong()}/>
     </div>
 
 

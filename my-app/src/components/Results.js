@@ -6,7 +6,7 @@ import './SearchContainer.css'
 import './Results.css'
 
 
-export default class SearchContainer extends Component {
+export default class Results extends Component {
   constructor(props) {
     super(props);
 
@@ -16,7 +16,7 @@ export default class SearchContainer extends Component {
 
     return (
         <div className="results">
-          {this.props.results.map((song, i) => <SongTile src={song.track.release.image} title={song.track.title} artist={song.track.artist.name} key={i}/>)}
+          {this.props.results.map((song, i) => <SongTile addSong={this.props.addSong} src={song.track.release.image} title={song.track.title} artist={song.track.artist.name} key={i}/>)}
         </div>
     );
   }

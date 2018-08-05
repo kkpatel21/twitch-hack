@@ -13,6 +13,7 @@ class MusicTable extends React.Component {
   }
 
   render() {
+    console.log('queue',this.props.queue);
     return (
       <Table celled>
         <Table.Row>
@@ -24,7 +25,7 @@ class MusicTable extends React.Component {
           size="tiny"
           />
           <Divider />
-          {this.props.queue.reverse().slice(1).map((song) => {
+          {this.props.queue.slice(0,this.props.queue.length-1).reverse().map((song) => {
             return (
               <span>
                 <Popup
