@@ -1,0 +1,7 @@
+.ui.card>.content {
+  font-size: 0.75em;
+}
+
+.ui.card {
+  width: 100px;
+}

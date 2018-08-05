@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
-import { Card, Image } from 'semantic-ui-react'
+import { Card, Image, Search, Popup } from 'semantic-ui-react'
+import './SongTile.css'
 
-const CardExampleCard = ({title,src}) => (
+
+const CardExampleCard = ({title,src,artist}) => (
   <Card>
-    <Image src={src} size="mini"/>
+    <Popup
+      trigger={<Image src={src} size="mini"/>}
+      header={title}
+      content={artist}
+
+    />
+
     <Card.Content>
       <Card.Description>{title}</Card.Description>
     </Card.Content>
@@ -16,12 +24,10 @@ export default class SongTile extends Component {
   }
 
   render() {
-    console.log('props', this.props);
+    // console.log('props', this.props);
     return (
       <div className="song-tile">
-        {/* <p>{this.props.title}</p>
-        <img src={this.props.src}/> */}
-        <CardExampleCard title={this.props.title} src={this.props.src}/>
+        <CardExampleCard title={this.props.title} src={this.props.src} artist={this.props.artist}/>
       </div>
     );
   }
