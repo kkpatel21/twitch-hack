@@ -91,7 +91,7 @@ class VideoComponent extends React.Component {
       : <Game lose={(timer)=>{
         let queue = this.state.queue.slice();
         queue[0].score = timer;
-        queue.sort((a,b) => a-b)
+        queue.sort((a,b) => a.score-b.score)
         this.setState({game: false, score: timer, queue: queue});
         localStorage.score = timer
       }}/>}
