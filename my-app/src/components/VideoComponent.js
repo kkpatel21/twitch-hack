@@ -4,7 +4,8 @@ import { Button, Icon, Grid, Segment, Container, Header, Divider} from 'semantic
 //Components
 import MusicTable from './MusicTable';
 import './VideoComponent.css'
-import SearchContainer from './SearchContainer'
+import SearchContainer from './SearchContainer';
+import Game from './Game';
 
 let queue = [
   {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=599588842&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533482120&oauth_version=1.0&shopId=2020&trackId=5508078&oauth_signature=lPIBMpsv2m6jDcOBNGiPT9cKB4w%3D', name: 'Sweet Caroline'},
@@ -19,9 +20,11 @@ class VideoComponent extends React.Component {
 
     this.state = {
       queue: queue,
+      game: false
     };
 
     this.queueSong = this.queueSong.bind(this);
+    // this.addSong = this.addSong.bind(this);
   }
 
   queueSong(trackId) {
@@ -41,34 +44,45 @@ class VideoComponent extends React.Component {
     })
   }
 
+  // addSong(url,title){
+  //   let addQueue = this.state.queue.slice();
+  //   addQueue.unshift({url: url, name: title})
+  //   this.setState({
+  //     queue: addQueue,
+  //   })
+  // }
+
   delayedPop(){
-    setTimeout(()=>{this.popSong(); console.log('new song after 15')}, 15000)
+    setTimeout(()=>{this.popSong();console.log('new song after 60')}, 10000)
   }
 
   render() {
-    console.log('queue is', this.state.queue);
+    console.log("this is the state of game",this.state.game)
     return (
       <div>
+      {!this.state.game ?
         <Grid celled>
-          <Grid.Row>
-            <Grid.Column width={11}>
+        <Grid.Row>
+          <Grid.Column width={11}>
 
-              <div className="music">
-                <SearchContainer queueSong={()=>this.queueSong()} popSong={()=>this.popSong()} delayedPop={()=>this.delayedPop()} queue={this.state.queue}/>
-                Put The Library In Here
+            <div className="music">
+              <SearchContainer queueSong={()=>this.queueSong()} popSong={()=>this.popSong()} delayedPop={()=>this.delayedPop()} queue={this.state.queue}/>
 
-              </div>
-            </Grid.Column>
-            <Grid.Column width={5}>
-              <Header as='h5' icon='music' content='Queue' className='queue' />
-              <Divider />
-              <div>
-                <MusicTable queue={this.state.queue}/>
-              </div>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </div>
+            </div>
+          </Grid.Column>
+          <Grid.Column width={5}>
+            <Header as='h5' icon='music' content='Queue' className='queue' />
+            <Divider />
+            <div>
+              <MusicTable queue={this.state.queue}/>
+            </div>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+      : <Game/>}
+
+
+    </div>
     );
   }
 }

@@ -13,6 +13,7 @@ class MusicTable extends React.Component {
   }
 
   render() {
+    console.log('queue',this.props.queue);
     return (
       <Table celled>
         <Table.Row>

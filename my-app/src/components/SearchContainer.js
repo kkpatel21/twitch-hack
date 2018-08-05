@@ -45,20 +45,14 @@ export default class SearchContainer extends Component {
     console.log("results", this.state.results);
     console.log("yo momsz",this.state.searchValue)
     const {results} = this.state
-    let songTileRender;
-    results.map((song, i) => {
-      if (i%3 === 0) {
-
-      }
-    })
     return (
       <div>
         <div className="searchBar">
           <ReactPlayer url={this.props.queue[this.props.queue.length-1].url}
           muted={this.state.muted}
           playing = {true}
-          width = "0px"
-          height = "0px"
+          width = "100px"
+          height = "50px"
           volume = "1"
           onPlay ={()=>{this.props.delayedPop()}}
          />
@@ -77,7 +71,7 @@ export default class SearchContainer extends Component {
 
 
       </div>
-      <Results results={this.state.results}/>
+      <Results results={this.state.results} />
     </div>
 
 
