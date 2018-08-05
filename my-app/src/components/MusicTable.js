@@ -7,7 +7,6 @@ import './MusicTable.css'
 class MusicTable extends React.Component {
   constructor(props, context) {
     super(props, context);
-
     this.state = {
       songsPicked: [{position: 1, song: 'hello', artist: 'world', bits: 3}]
     };

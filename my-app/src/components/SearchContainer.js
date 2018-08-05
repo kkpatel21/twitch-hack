@@ -10,7 +10,7 @@ export default class SearchContainer extends Component {
     this.state = {
       results: [],
       searchValue:"",
-      playing: true,
+      muted: false,
     }
   }
 
@@ -39,36 +39,21 @@ export default class SearchContainer extends Component {
       })
   }
 
-  playMusic () {
-  //   axios({
-  //     method:'get',
-  //     url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=880196878&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533456014&oauth_version=1.0&shopId=2020&trackId=5508078&oauth_signature=rpmcGlWwgCaj4PZfe1VQqAGkyNI%3D',
-  //     headers: {
-  //       accept: 'stream',
-  //     },
-  //   })
-  //   .then(responseJson => {
-  //     res.send(responseJson.data)
-  // })
-  //   .catch(function(error){
-  //     console.log("error", error)
-  //     res.send(error)
-  //   })
-  }
-
-
   render() {
     console.log("results", this.state.results);
     console.log("yo momsz",this.state.searchValue)
     const {results} = this.state
     return (
         <div>
-          <ReactPlayer url='https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=690235746&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533458085&oauth_version=1.0&shopId=2020&trackId=2447235&oauth_signature=sWviPi7aCvIvsgDqwzNJSUGA0hY%3D'
-          playing={this.state.playing}
+          <ReactPlayer url={this.props.queue[this.props.queue.length-1].url}
+          muted={this.state.muted}
+          playing = {true}
           width = "0px"
           height = "0px"
+          volume = "1"
+          onPlay ={()=>{this.props.delayedPop()}}
          />
-         <Button onClick={()=>this.setState({playing: !this.state.playing})}>{this.state.playing ? 'Pause' : 'Play'}</Button>
+         <Button onClick={()=>this.setState({muted: !this.state.muted})}>{this.state.muted ? 'Mute' : 'UnMute'}</Button>
         <Search
          onSearchChange={(e)=>this.handleSearchChange(e)}
         />
