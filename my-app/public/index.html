@@ -41,5 +41,34 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
     <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+
+    <script src="%PUBLIC_URL%/index.js"></script>
+    <script src="%PUBLIC_URL%/random.js"></script>
+    <script src="%PUBLIC_URL%/start.js"></script>
+
+    <style>
+    .circle{
+        border-radius: 50%;
+        position: absolute;
+        background-color:red;
+
+    }
+
+    .intro {
+        text-align: center;
+    }
+
+
+    .body {
+        overflow: hidden;
+    }
+
+    #game-board {
+        overflow: hidden;
+    }
+    </style>
+
   </body>
 </html>
