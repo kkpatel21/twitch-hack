@@ -329,7 +329,7 @@ Enemy.prototype.remove = function() {
 var loseGame = function(){
     if (gameOver){
         $('.circle').stop();
-        enemy.$div.stop();
+        //enemy.$div.stop();
         // p.$div.stop();
         window.removeEventListener('mousemove')
         $('#game-board').html();

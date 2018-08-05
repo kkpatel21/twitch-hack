@@ -13,27 +13,26 @@ class MusicTable extends React.Component {
   }
 
   render() {
-    console.log('queue',this.props.queue);
+    let queue = this.props.queue.slice();
+    queue.sort(function(a, b){return a.score - b.score})
     return (
       <Table celled>
         <Table.Row>
           <Popup
             trigger={<Table.Cell>
-            <Label ribbon>Current</Label>{this.props.queue[this.props.queue.length-1].name}
+            <Label ribbon>Current</Label>{queue[queue.length-1].name}
           </Table.Cell>} flowing hoverable>
-          <Header as='h5'>{this.props.queue[this.props.queue.length-1].name}</Header>
-          <Header as='h6'>User: {this.props.queue[this.props.queue.length-1].user} Score: </Header>
+          <Header as='h6'>User: {queue[queue.length-1].user} - Score: {queue[queue.length-1].score}</Header>
          </Popup>
           <Divider />
-          {this.props.queue.slice(0,this.props.queue.length-1).reverse().map((song) => {
+          {queue.slice(0,queue.length-1).reverse().map((song) => {
             return (
               <span>
                 <Popup
                   trigger={<Table.Cell>
                   {song.name}
                 </Table.Cell>} flowing hoverable>
-                <Header as='h5'>{song.name}</Header>
-                <Header as='h6'>{song.user}</Header>
+                <Header as='h6'>User: {song.user} - Score: {song.score}</Header>
                 </Popup>
                 <Divider />
               </span>

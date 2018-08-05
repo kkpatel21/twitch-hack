@@ -8,9 +8,9 @@ import SearchContainer from './SearchContainer';
 import Game from './Game';
 
 let queue = [
-  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=416493679&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533492411&oauth_version=1.0&shopId=2020&trackId=5508078&oauth_signature=n3byILRPdDrIEtDNNHQOUsDXbCM%3D', name: 'Sweet Caroline'},
-  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=442819997&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533492391&oauth_version=1.0&shopId=2020&trackId=2447235&oauth_signature=55Y2h1pUe2biOnw8ETIJMhRiQ80%3D', name: 'A Thousand miles'},
-  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=687369300&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533492355&oauth_version=1.0&shopId=2020&trackId=2675967&oauth_signature=w3nCWYDQvbJHqXGEIZotNvPDEvI%3D', name: 'A Little Less Talk And A Lot More Action'}
+  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=416493679&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533492411&oauth_version=1.0&shopId=2020&trackId=5508078&oauth_signature=n3byILRPdDrIEtDNNHQOUsDXbCM%3D', name: 'Sweet Caroline', user: 'RIGkkpatel21', score: 14},
+  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=442819997&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533492391&oauth_version=1.0&shopId=2020&trackId=2447235&oauth_signature=55Y2h1pUe2biOnw8ETIJMhRiQ80%3D', name: 'A Thousand miles', user: 'RIGkkpatel21', score: 11},
+  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=687369300&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533492355&oauth_version=1.0&shopId=2020&trackId=2675967&oauth_signature=w3nCWYDQvbJHqXGEIZotNvPDEvI%3D', name: 'A Little Less Talk And A Lot More Action', user: 'RIGkkpatel21', score: 19}
 ]
 
 
@@ -28,11 +28,11 @@ class VideoComponent extends React.Component {
     // this.addSong = this.addSong.bind(this);
   }
 
-  queueSong(trackId, dummy, user) {
+  queueSong(trackId, dummy, user, score) {
     //make ajax request to get url
-    console.log('params of queuesong', trackId, dummy, user);
+    console.log('params of queuesong', trackId, dummy, user, score);
     let queue = this.state.queue.slice();
-    queue.unshift({url: trackId, name:dummy, user: user}); //push song object
+    queue.unshift({url: trackId, name:dummy, user: user, score: score}); //push song object
     this.setState({
       queue: queue,
     })
@@ -70,7 +70,7 @@ class VideoComponent extends React.Component {
           <Grid.Column width={11}>
 
             <div className="music">
-              <SearchContainer user={this.props.user} queueSong={(a,b,c)=>this.queueSong(a,b,c)} popSong={()=>this.popSong()} delayedPop={()=>this.delayedPop()} queue={this.state.queue}/>
+              <SearchContainer score={this.props.score} user={this.props.user} queueSong={(a,b,c,d)=>this.queueSong(a,b,c,d)} popSong={()=>this.popSong()} delayedPop={()=>this.delayedPop()} queue={this.state.queue}/>
               {/* <Button onClick={()=>{console.log('clicked');this.queueSong()}}>press me</Button> */}
             </div>
           </Grid.Column>
