@@ -1,8 +1,7 @@
 
 import React from 'react'
-import { Header, Image, Table } from 'semantic-ui-react'
-
-
+import { Divider, Header, Image, Table, Label, Popup } from 'semantic-ui-react'
+import './MusicTable.css'
 
 
 class MusicTable extends React.Component {
@@ -15,7 +14,89 @@ class MusicTable extends React.Component {
 
   render() {
     return (
-      <div>placeholder</div>
+      <Table celled>
+        <Table.Row>
+          <Popup
+            trigger={<Table.Cell>
+            <Label ribbon>Current</Label> Song Name
+          </Table.Cell>}
+          content="In this popup, the artist and song should show up"
+          size="tiny"
+          />
+          <Divider />
+          <Popup
+            trigger={<Table.Cell>
+            Some Song
+          </Table.Cell>}
+          content="In this popup, the artist and song should show up"
+          size="tiny"
+          />
+          <Divider />
+          <Popup
+            trigger={<Table.Cell>
+            Some Song
+          </Table.Cell>}
+          content="In this popup, the artist and song should show up"
+          size="tiny"
+          />
+          <Divider />
+          <Popup
+            trigger={<Table.Cell>
+            Some Song
+          </Table.Cell>}
+          content="In this popup, the artist and song should show up"
+          size="tiny"
+          />
+          <Divider />
+          <Popup
+            trigger={<Table.Cell>
+            Some Song
+          </Table.Cell>}
+          content="In this popup, the artist and song should show up"
+          size="tiny"
+          />
+          <Divider />
+          <Popup
+            trigger={<Table.Cell>
+            Some Song
+          </Table.Cell>}
+          content="In this popup, the artist and song should show up"
+          size="tiny"
+          />
+          <Divider />
+          <Popup
+            trigger={<Table.Cell>
+            Some Song
+          </Table.Cell>}
+          content="In this popup, the artist and song should show up"
+          size="tiny"
+          />
+          <Divider />
+          <Popup
+            trigger={<Table.Cell>
+            Some Song
+          </Table.Cell>}
+          content="In this popup, the artist and song should show up"
+          size="tiny"
+          />
+          <Divider />
+          <Popup
+            trigger={<Table.Cell>
+            Some Song
+          </Table.Cell>}
+          content="In this popup, the artist and song should show up"
+          size="tiny"
+          />
+          <Divider />
+          <Popup
+            trigger={<Table.Cell>
+            Some Song
+          </Table.Cell>}
+          content="In this popup, the artist and song should show up"
+          size="tiny"
+          />
+        </Table.Row>
+      </Table>
     );
   }
 }

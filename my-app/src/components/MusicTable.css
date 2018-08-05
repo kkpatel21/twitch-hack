@@ -1,0 +1,23 @@
+.ui.table:not(.unstackable) tr {
+  padding-top: 0em;
+  padding-bottom: 0em;
+}
+
+.ui.table:not(.unstackable) td:first-child, .ui.table:not(.unstackable) th:first-child {
+  font-weight: 200;
+  font-size: 7pt;
+}
+
+.ui.label {
+  padding: .3833em .533em;
+  font-weight: 400;
+  font-size: .65714286rem;
+}
+
+.ui.divider {
+  margin: 0;
+}
+
+.ui.table {
+  font-size: 7pt;
+}
