@@ -60,7 +60,7 @@ class VideoComponent extends React.Component {
     console.log("this is the state of game",this.state.game)
     return (
       <div>
-      {!this.state.game ?
+      {this.state.game ?
         <Grid celled>
         <Grid.Row>
           <Grid.Column width={11}>
