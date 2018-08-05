@@ -17,36 +17,26 @@ class VideoComponent extends React.Component {
   }
 
   render() {
-    let musicRender;
-    if (!this.state.open) {
-      musicRender = (
-        <Grid celled>
-          <Grid.Row>
-            <Grid.Column width={11}>
-
-              <div className="music">
-                <SearchContainer />
-                Put The Library In Here
-
-              </div>
-            </Grid.Column>
-            <Grid.Column width={5}>
-              <Header as='h5' icon='music' content='Queue' className='queue' />
-              <Divider />
-              <div>
-                <MusicTable />
-              </div>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      )
-    } else {
-
-    }
     return (
-      <div>
-          {musicRender}
-      </div>
+      <Grid celled>
+        <Grid.Row>
+          <Grid.Column width={11}>
+
+            <div className="music">
+              <SearchContainer />
+              Put The Library In Here
+
+            </div>
+          </Grid.Column>
+          <Grid.Column width={5}>
+            <Header as='h5' icon='music' content='Queue' className='queue' />
+            <Divider />
+            <div>
+              <MusicTable />
+            </div>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   }
 }
