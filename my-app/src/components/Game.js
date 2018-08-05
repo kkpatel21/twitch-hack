@@ -3,6 +3,8 @@ import $ from 'jquery';
 
 import Timer from './Timer'
 
+let lose;
+
 //Random component of game
 var random = (function () {
 
@@ -34,18 +36,15 @@ var random = (function () {
 
 //Main javascript for game
 var modulo = (window.innerHeight/2)%5;
-var winningDiameter = (window.innerHeight/2) - modulo; // bigger than this wins
 var losingDiameter = 10;                     // smaller than this loses
-var growDiameter = 20;                      // grow by this many pixels
 var shrinkDiameter = 5;                     // shrink by this many pixels
 var p;                                     //player of the game
-var win = false;
-var lose = false;
 
 var gameOver = false;
 
 var minDiameter = 5;                   // random size >= this
 var maxDiameter = window.innerWidth/4; // random size <= this
+var winningDiameter = 150;
 var enemyDuration = 5000;              // time to cross the document
 
 //Blob constructor
@@ -144,23 +143,7 @@ Player.prototype.move = function(mvt) {
     this.x += mvt;
 };
 
-//increases diameter of Player and changes it on the DOM
-Player.prototype.grow = function(growDiam) {
 
-    var player = this;
-    player.setDiameter (player.diameter + growDiam);
-    // console.log(player);
-    player.$div.animate({width: '+=' + growDiam, height: '+=' + growDiam},
-    {duration: 10, progress: function(){
-       if(player.diameter >= winningDiameter){
-            winGame();
-            gameOver = true;
-            win = true;
-        }
-    }, complete: function(){
-        console.log('complete growing')
-        }});
-};
 
 Player.prototype.shrink = function(shrinkDiam) {
     var player = this;
@@ -171,7 +154,6 @@ Player.prototype.shrink = function(shrinkDiam) {
         if(player.diameter <= losingDiameter){
             loseGame();
             gameOver = true;
-            lose = true;
         }
     }, complete: function(){
         console.log('complete shrinking')
@@ -188,9 +170,9 @@ Player.prototype.collide = function(enemy) {
         this.shrink(shrinkDiameter);
         // console.log("SHRINK: " + shrinkDiameter);
     }
-    if(enemy.diameter <= this.diameter){
-        this.grow(growDiameter);
-    }
+    // if(enemy.diameter <= this.diameter){
+    //     this.grow(growDiameter);
+    // }
 };
 
 
@@ -355,24 +337,16 @@ Enemy.prototype.remove = function() {
     this.setDiamter(0);
 };
 
-var winGame = function(){
-    if (gameOver){ //so that board only clears once
-    //stopping everything
-    $('.circle').stop();
-
-        // $('#game-board').html(this.$div);
-        //source: http://www.phpied.com/files/location-location/location-location.html
-        window.setTimeout('alert("You win! :)");window.location.reload();', 1000);
-    }
-};
-
 var loseGame = function(){
     if (gameOver){
+      console.log('LOST')
         $('.circle').stop();
+        // $(document).off('mousemove', )
         // enemy.$div.stop();
         // p.$div.stop();
-        // $('#game-board').html(this.$div);
-        window.setTimeout('alert("You lose :(");window.location.reload();', 1000);
+        $('#game-board').html();
+        lose();
+
     }
 };
 
@@ -383,33 +357,23 @@ testPlayer.addToGame();
 testPlayer.setY(window.innerHeight/2 + 50);
 testPlayer.setX((window.innerWidth/2) - (testPlayer.getDiameter()/2));
 
-var testGrowing = function(){
-    console.log("blob is growing");
-    testPlayer.grow(growDiameter);
-};
-
-var testShrinking = function(){
-    console.log("blob is shrinking");
-    testPlayer.shrink(shrinkDiameter);
-};
-
 class Game extends React.Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = {
-      win: win,
-      lose: lose,
+      gameOver: gameOver,
       timer: 0
     };
   }
 
 componentDidMount(){
-  this.timer()
+  lose = this.props.lose;
 }
 
 componentWillUnmount(){
   clearInterval(this.state.intervalId)
+  this.props.lose(this.state.timer);
 }
 timer(){
   var intervalId = setInterval(() => {
@@ -420,6 +384,7 @@ timer(){
 //Starting game
 startGame(){
     console.log("game has been started");
+    this.timer()
     p = new Player();
     p.setColor('blue');
     p.setDiameter(50);
@@ -438,14 +403,13 @@ startGame(){
         // console.log("Enemy coming in: " + e);
     }, window.innerWidth/2); //so it's not easier on a larger screen
 
-    }
+  }
 
   render() {
     return (
       <div id="body">
         <link rel="stylesheet" href="./game-stylesheets/styles.css"></link>
-
-        <button onClick={this.startGame} id="start">Start Game</button>
+        <button onClick={() => this.startGame()} id="start">Start Game</button>
         <div>
            {this.state.timer < 60 ? '0' : `${Math.floor(this.state.timer/60)}`} : {(this.state.timer%60) < 10 ? `0${this.state.timer%60}` : `${this.state.timer%60}`}
          </div>
