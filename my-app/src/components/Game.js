@@ -344,6 +344,9 @@ var loseGame = function(){
         // $(document).off('mousemove', )
         // enemy.$div.stop();
         // p.$div.stop();
+        window.removeEventListener('mousemove', function(event){
+          console.log('REMOVED EVENT LISTENER')
+        })
         $('#game-board').html();
         lose();
 
