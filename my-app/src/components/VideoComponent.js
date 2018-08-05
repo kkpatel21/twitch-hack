@@ -7,9 +7,9 @@ import './VideoComponent.css'
 import SearchContainer from './SearchContainer'
 
 let queue = [
-  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=533838273&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533463605&oauth_version=1.0&shopId=2020&trackId=5508078&oauth_signature=sr1kOwLu%2FFdjrh3LUmKloBCTJeg%3D', name: 'Sweet Caroline'},
-  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=533838273&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533463605&oauth_version=1.0&shopId=2020&trackId=2447235&oauth_signature=XoxvTTnzxTdXDVeAbSN5OMrHjrM%3D', name: 'A thousand miles'},
-  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=533838273&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533463605&oauth_version=1.0&shopId=2020&trackId=2675967&oauth_signature=wX8ko%2BPJxcXy%2FrnfsZfJrK8DWsw%3D', name: 'A Little Less Talk And A Lot More Action'}
+  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=685368009&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533467346&oauth_version=1.0&shopId=2020&trackId=5508078&oauth_signature=xKSdwR8A8Ns3Q0kX9Hxh%2BLRcE3c%3D', name: 'Sweet Caroline'},
+  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=801374586&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533467314&oauth_version=1.0&shopId=2020&trackId=2447235&oauth_signature=XeHbk2RfyJt5v28cI88kH%2FLfRPw%3D', name: 'A thousand miles'},
+  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=56912314&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533467423&oauth_version=1.0&shopId=2020&trackId=2675967&oauth_signature=TBJR28hyK1mNW0yWavmKAgehShQ%3D', name: 'A Little Less Talk And A Lot More Action'}
 ]
 
 
@@ -42,10 +42,11 @@ class VideoComponent extends React.Component {
   }
 
   delayedPop(){
-    setTimeout(()=>{this.popSong();console.log('new song after 60')}, 60000)
+    setTimeout(()=>{this.popSong();console.log('new song after 15')}, 15000)
   }
 
   render() {
+    console.log('queue is', this.state.queue);
     return (
       <div>
         <Grid celled>
