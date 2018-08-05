@@ -33,6 +33,7 @@ class VideoComponent extends React.Component {
     console.log('params of queuesong', trackId, dummy, user, score);
     let queue = this.state.queue.slice();
     queue.unshift({url: trackId, name:dummy, user: user, score: score}); //push song object
+    queue.sort(function(a, b) {return a.score - b.score})
     this.setState({
       queue: queue,
       game: !this.state.game,
@@ -41,6 +42,7 @@ class VideoComponent extends React.Component {
 
   popSong(){
     let queuePop = this.state.queue.slice();
+    queuePop.sort(function(a, b) {return a.score - b.score})
     queuePop.pop();
     this.setState({
       queue: queuePop,
@@ -60,7 +62,9 @@ class VideoComponent extends React.Component {
   }
 
   render() {
-    console.log("this is the state of game",this.state.game)
+    let queue = this.state.queue.slice();
+    queue = queue.sort(function(a, b) {return a.score - b.score})
+    console.log('TheQUeue', queue)
     return (
       <div>
         <Button onClick={()=>this.setState({game:!this.state.game})}>play game</Button>
@@ -71,7 +75,7 @@ class VideoComponent extends React.Component {
           <Grid.Column width={11}>
 
             <div className="music">
-              <SearchContainer score={this.props.score} user={this.props.user} queueSong={(a,b,c,d)=>this.queueSong(a,b,c,d)} popSong={()=>this.popSong()} delayedPop={()=>this.delayedPop()} queue={this.state.queue}/>
+              <SearchContainer score={this.props.score} user={this.props.user} queueSong={(a,b,c,d)=>this.queueSong(a,b,c,d)} popSong={()=>this.popSong()} delayedPop={()=>this.delayedPop()} queue={queue}/>
               {/* <Button onClick={()=>{console.log('clicked');this.queueSong()}}>press me</Button> */}
             </div>
           </Grid.Column>
@@ -79,7 +83,7 @@ class VideoComponent extends React.Component {
             <Header as='h5' icon='music' content='Queue' className='queue' />
             <Divider />
             <div>
-              <MusicTable queue={this.state.queue}/>
+              <MusicTable queue={queue}/>
             </div>
           </Grid.Column>
         </Grid.Row>
