@@ -26,3 +26,11 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.ui.card>.content !important {
+  font-size: 0.75em;
+}
+
+.ui.card {
+  width: 100px;
+}
