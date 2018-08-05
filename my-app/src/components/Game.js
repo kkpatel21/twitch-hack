@@ -51,8 +51,6 @@ var enemyDuration = 5000;              // time to cross the document
 function Blob(color, diameter) {
 
   //setting instance variables of Blob
-//   this.x = window.innerWidth/2;
-//   this.y = window.innerHeight/2;
   this.color = color;
   this.diameter = diameter;
   this.$div = $('<div class="circle"></div>');
@@ -255,9 +253,11 @@ Enemy.prototype.start = function() {
             }
 
             if (p.intersects(enemy)){
+
                 enemy.maybeCollide();
                 enemy.$div.remove();
             }
+            if(lose) return;
     }, complete: function(){
         enemy.$div.remove();
     }});
@@ -267,6 +267,7 @@ Enemy.prototype.start = function() {
 //do we have to set x and y if already set in animate
 Enemy.prototype.maybeCollide = function() {
     if (this.hasCollided){
+
     } else {
     //update x and y --> this happens in animate
 
@@ -328,10 +329,12 @@ Enemy.prototype.remove = function() {
 
 var loseGame = function(){
     if (gameOver){
+      // console.log('LOST')
         $('.circle').stop();
-        //enemy.$div.stop();
+        // enemy.$div.stop();
+
         // p.$div.stop();
-        window.removeEventListener('mousemove')
+        window.removeEventListener('mousemove', ()=>{})
         $('#game-board').html();
         lose();
 
