@@ -36,6 +36,7 @@ class VideoComponent extends React.Component {
     queue.sort(function(a, b) {return a.score - b.score})
     this.setState({
       queue: queue,
+      game: !this.state.game,
     })
   }
 
@@ -67,7 +68,7 @@ class VideoComponent extends React.Component {
     return (
       <div>
         <Button onClick={()=>this.setState({game:!this.state.game})}>play game</Button>
-        last score: {this.state.score}
+        { localStorage.getItem('score') !== 'undefined' ? `last score: ${localStorage.getItem('score')}` : ''}
       {!this.state.game ?
         <Grid celled>
         <Grid.Row>
@@ -87,7 +88,7 @@ class VideoComponent extends React.Component {
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      : <Game lose={(timer)=>{this.setState({game: false, score: timer})}}/>}
+      : <Game lose={(timer)=>{this.setState({game: false, score: timer}); localStorage.score = timer}}/>}
 
 
     </div>
