@@ -8,9 +8,9 @@ import SearchContainer from './SearchContainer';
 import Game from './Game';
 
 let queue = [
-  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=416493679&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533492411&oauth_version=1.0&shopId=2020&trackId=5508078&oauth_signature=n3byILRPdDrIEtDNNHQOUsDXbCM%3D', name: 'Sweet Caroline', user: 'RIGkkpatel21', score: 14},
-  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=442819997&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533492391&oauth_version=1.0&shopId=2020&trackId=2447235&oauth_signature=55Y2h1pUe2biOnw8ETIJMhRiQ80%3D', name: 'A Thousand miles', user: 'RIGkkpatel21', score: 11},
-  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=687369300&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533492355&oauth_version=1.0&shopId=2020&trackId=2675967&oauth_signature=w3nCWYDQvbJHqXGEIZotNvPDEvI%3D', name: 'A Little Less Talk And A Lot More Action', user: 'RIGkkpatel21', score: 19}
+  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=337802478&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533505003&oauth_version=1.0&shopId=2020&trackId=5508078&oauth_signature=WfBYCuPduNbZRybrSdNIyFiuld4%3D', name: 'Sweet Caroline', user: 'RIGkkpatel21', score: 14},
+  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=437929443&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533505056&oauth_version=1.0&shopId=2020&trackId=2447235&oauth_signature=63ebLJsW37H3ykPYJhj1efWlgF0%3D', name: 'A Thousand miles', user: 'RIGkkpatel21', score: 11},
+  {url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=28919211&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533505091&oauth_version=1.0&shopId=2020&trackId=2675967&oauth_signature=3RSpCfu5g%2BjsUwJ6E8eiDoI1yWE%3D', name: 'A Little Less Talk And A Lot More Action', user: 'RIGkkpatel21', score: 19}
 ]
 
 
