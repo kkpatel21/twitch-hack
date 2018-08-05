@@ -51,8 +51,6 @@ var enemyDuration = 5000;              // time to cross the document
 function Blob(color, diameter) {
 
   //setting instance variables of Blob
-//   this.x = window.innerWidth/2;
-//   this.y = window.innerHeight/2;
   this.color = color;
   this.diameter = diameter;
   this.$div = $('<div class="circle"></div>');
@@ -112,7 +110,6 @@ Blob.prototype.setY = function(y) {
 
 //checks if one blob intersects another Blob or Enemy
 Blob.prototype.intersects = function (other) {
-    // console.log(other);
     var dx = this.getX() - other.getX();
     var dy = this.getY() - other.getY();
     var distance_squared = (dx * dx + dy * dy);
@@ -137,7 +134,6 @@ Player.prototype.move = function(mvt) {
              var $elt = this.$div;
              var left = parseInt($elt.css("left"),10);
              var x = left+100; // radius is 100
-             console.log("x is now "+x);
          }
     });
     this.x += mvt;
@@ -156,7 +152,6 @@ Player.prototype.shrink = function(shrinkDiam) {
             gameOver = true;
         }
     }, complete: function(){
-        console.log('complete shrinking')
     }
     });
 };
@@ -264,10 +259,11 @@ Enemy.prototype.start = function() {
             }
 
             if (p.intersects(enemy)){
-                console.log("intersected");
+                // console.log("intersected");
                 enemy.maybeCollide();
                 enemy.$div.remove();
             }
+            if(lose) return;
     }, complete: function(){
         enemy.$div.remove();
     }});
@@ -277,7 +273,7 @@ Enemy.prototype.start = function() {
 //do we have to set x and y if already set in animate
 Enemy.prototype.maybeCollide = function() {
     if (this.hasCollided){
-        console.log('has already collided');
+        // console.log('has already collided');
     } else {
     //update x and y --> this happens in animate
 
@@ -339,11 +335,11 @@ Enemy.prototype.remove = function() {
 
 var loseGame = function(){
     if (gameOver){
-      console.log('LOST')
+      // console.log('LOST')
         $('.circle').stop();
-        enemy.$div.stop();
+        // enemy.$div.stop();
         // p.$div.stop();
-        window.removeEventListener('mousemove')
+        window.removeEventListener('mousemove', ()=>{})
         $('#game-board').html();
         lose();
 
@@ -383,7 +379,6 @@ timer(){
 }
 //Starting game
 startGame(){
-    console.log("game has been started");
     this.timer()
     p = new Player();
     p.setColor('blue');
@@ -391,7 +386,6 @@ startGame(){
     p.addToGame();
 
     $(document).on('mousemove', function (event) {
-        // console.log(p);
         //source: https://www.w3schools.com/jquery/event_mousemove.asp
         p.setX(event.pageX);
         p.setY(event.pageY);
@@ -400,7 +394,6 @@ startGame(){
     setInterval(function () {
         var e = new Enemy();
         e.start();
-        // console.log("Enemy coming in: " + e);
     }, window.innerWidth/2); //so it's not easier on a larger screen
 
   }
