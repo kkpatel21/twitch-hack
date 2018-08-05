@@ -4,6 +4,7 @@ import { Button, Icon, Grid, Segment, Container, Header, Divider} from 'semantic
 //Components
 import MusicTable from './MusicTable';
 import './VideoComponent.css'
+import SearchContainer from '../SearchContainer'
 
 
 class VideoComponent extends React.Component {
@@ -24,34 +25,16 @@ class VideoComponent extends React.Component {
             <Grid.Column width={11}>
 
               <div className="music">
+                <SearchContainer />
                 Put The Library In Here
-                Hey Whats Up Dog I been Cheeling How You Been Yeah Dog Yeah Dog Yeah Dog
-                Hey Whats Up Dog I been Cheeling How You Been Yeah Dog Yeah Dog Yeah Dog
-                Hey Whats Up Dog I been Cheeling How You Been Yeah Dog Yeah Dog Yeah Dog
-                heeling How You Been Yeah Dog Yeah Dog Yeah Dog
-                ey Whats Up Dog I been Cheeling How You Been Yeah Dog Yeah Dog Yeah Dog
-                Hey Whats Up Dog I been Cheeling How You Been Yeah Dog Yeah Dog Yeah Dog
-                Hey Whats Up Dog I been
-                ey Whats Up Dog I been Cheeling How You Been Yeah Dog Yeah Dog Yeah Dog
-                Hey Whats Up Dog I been Cheeling How You Been Yeah Dog Yeah Dog Yeah Dog
-                Hey Whats Up Dog I been
+
               </div>
             </Grid.Column>
             <Grid.Column width={5}>
               <Header as='h5' icon='music' content='Queue' className='queue' />
               <Divider />
               <div>
-                Put The Music Table In Here
-                Hey Whats Up Dog I been Cheeling How You Been Yeah Dog Yeah Dog Yeah Dog
-                Hey Whats Up Dog I been Cheeling How You Been Yeah Dog Yeah Dog Yeah Dog
-                Hey Whats Up Dog I been Cheeling How You Been Yeah Dog Yeah Dog Yeah Dog
-                heeling How You Been Yeah Dog Yeah Dog Yeah Dog
-                ey Whats Up Dog I been Cheeling How You Been Yeah Dog Yeah Dog Yeah Dog
-                Hey Whats Up Dog I been Cheeling How You Been Yeah Dog Yeah Dog Yeah Dog
-                Hey Whats Up Dog I been
-                ey Whats Up Dog I been Cheeling How You Been Yeah Dog Yeah Dog Yeah Dog
-                Hey Whats Up Dog I been Cheeling How You Been Yeah Dog Yeah Dog Yeah Dog
-                Hey Whats Up Dog I been
+                <MusicTable />
               </div>
             </Grid.Column>
           </Grid.Row>
