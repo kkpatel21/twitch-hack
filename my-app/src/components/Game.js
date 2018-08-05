@@ -144,7 +144,6 @@ Player.prototype.move = function(mvt) {
 Player.prototype.shrink = function(shrinkDiam) {
     var player = this;
     player.setDiameter (player.diameter - shrinkDiam);
-    // console.log(player);
     player.$div.animate({width: player.diameter + 'px', height: player.diameter + 'px'},
     {duration: 10, progress: function(){
         if(player.diameter <= losingDiameter){
@@ -163,7 +162,6 @@ Player.prototype.collide = function(enemy) {
     enemy.hasCollided = true;
     if(enemy.diameter > this.diameter){
         this.shrink(shrinkDiameter);
-        // console.log("SHRINK: " + shrinkDiameter);
     }
     // if(enemy.diameter <= this.diameter){
     //     this.grow(growDiameter);
@@ -236,30 +234,26 @@ Enemy.prototype.start = function() {
             if (enemy.direction === 1){
                 top = parseInt($elt.css("top"),10);
                 y = top-(enemy.diameter/2);
-                // console.log("y is now "+ y);
                 enemy.setY(y);
 
             } else if (enemy.direction === 2){
                 left = parseInt($elt.css("left"),10);
                 x = left + (enemy.diameter/2);
-                // console.log("x is now "+ x);
                 enemy.setX(x);
 
             } else if (enemy.direction === 3){
                 top = parseInt($elt.css("top"),10);
                 y = top - (enemy.diameter/2);
-                // console.log('y is now ' + y)
                 enemy.setY(y);
 
             } else if (enemy.direction === 4){
                 left = parseInt($elt.css("left"),10);
                 x = left + (enemy.diameter/2);
-                // console.log("x is now "+ x);
                 enemy.setX(x);
             }
 
             if (p.intersects(enemy)){
-                // console.log("intersected");
+
                 enemy.maybeCollide();
                 enemy.$div.remove();
             }
@@ -273,7 +267,7 @@ Enemy.prototype.start = function() {
 //do we have to set x and y if already set in animate
 Enemy.prototype.maybeCollide = function() {
     if (this.hasCollided){
-        // console.log('has already collided');
+
     } else {
     //update x and y --> this happens in animate
 
@@ -338,6 +332,7 @@ var loseGame = function(){
       // console.log('LOST')
         $('.circle').stop();
         // enemy.$div.stop();
+
         // p.$div.stop();
         window.removeEventListener('mousemove', ()=>{})
         $('#game-board').html();
