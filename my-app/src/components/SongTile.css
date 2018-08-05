@@ -3,5 +3,10 @@
 }
 
 .ui.card {
-  width: 100px;
+  width: 4em;
+  margin-right: .75em;
+  height: 5.75em;
+  margin-bottom: .75em;
+  display: flex;
+  flex-wrap: wrap;
 }

@@ -4,6 +4,7 @@ import axios from 'axios';
 import SongTile from './SongTile'
 import ReactPlayer from 'react-player'
 import './SearchContainer.css'
+import Results from './Results'
 
 export default class SearchContainer extends Component {
   constructor(props) {
@@ -11,12 +12,12 @@ export default class SearchContainer extends Component {
     this.state = {
       results: [],
       searchValue:"",
-      playing: true,
+      muted: false,
     }
   }
 
   componentDidMount () {
-    axios.get('http://localhost:4000/searchSong?song=a')
+    axios.get('https://4167c069.ngrok.io/searchSong?song=a')
       .then((res)=>{
         console.log(res)
         this.setState({
@@ -31,7 +32,7 @@ export default class SearchContainer extends Component {
 
   onSubmit = () => {
     console.log('clicked submit');
-    axios.get('http://localhost:4000/searchSong' + '?song=' + this.state.searchValue)
+    axios.get('https://4167c069.ngrok.io/searchSong' + '?song=' + this.state.searchValue)
       .then(res => {
         console.log('results of search', res);
         this.setState({
@@ -40,52 +41,44 @@ export default class SearchContainer extends Component {
       })
   }
 
-  playMusic () {
-  //   axios({
-  //     method:'get',
-  //     url: 'https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=880196878&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533456014&oauth_version=1.0&shopId=2020&trackId=5508078&oauth_signature=rpmcGlWwgCaj4PZfe1VQqAGkyNI%3D',
-  //     headers: {
-  //       accept: 'stream',
-  //     },
-  //   })
-  //   .then(responseJson => {
-  //     res.send(responseJson.data)
-  // })
-  //   .catch(function(error){
-  //     console.log("error", error)
-  //     res.send(error)
-  //   })
-  }
-
-
   render() {
     console.log("results", this.state.results);
     console.log("yo momsz",this.state.searchValue)
     const {results} = this.state
+    let songTileRender;
+    results.map((song, i) => {
+      if (i%3 === 0) {
+
+      }
+    })
     return (
+      <div>
         <div className="searchBar">
-          <ReactPlayer url='https://stream.svc.7digital.net/stream/catalogue?oauth_consumer_key=7d4vr6cgb392&oauth_nonce=690235746&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1533458085&oauth_version=1.0&shopId=2020&trackId=2447235&oauth_signature=sWviPi7aCvIvsgDqwzNJSUGA0hY%3D'
-          playing={this.state.playing}
+          <ReactPlayer url={this.props.queue[this.props.queue.length-1].url}
+          muted={this.state.muted}
+          playing = {true}
           width = "0px"
           height = "0px"
+          volume = "1"
+          onPlay ={()=>{this.props.delayedPop()}}
          />
-        <Search
-         onSearchChange={(e)=>this.handleSearchChange(e)}
-        />
-        <Button animated onClick={()=>this.onSubmit()}>
-          <Button.Content visible>Search</Button.Content>
-          <Button.Content hidden>
-          <Icon name='search' />
-          </Button.Content>
-        </Button>
+          <Search
+           onSearchChange={(e)=>this.handleSearchChange(e)}
+          />
 
-       <Button onClick={()=>this.setState({playing: !this.state.playing})}>{this.state.playing ? 'Pause' : 'Mute'} </Button>
+          <Button onClick={()=>this.setState({muted: !this.state.muted})}>{this.state.muted ? <Icon name="mute" /> : <Icon name="unmute" />}</Button>
+          <Button animated onClick={()=>this.onSubmit()}>
+            <Button.Content visible>Search</Button.Content>
+            <Button.Content hidden>
+            <Icon name='search' />
+            </Button.Content>
+          </Button>
 
-        <div className="results-container">
-          {results.map((song, i) => <SongTile src={song.track.release.image} title={song.track.title} artist={song.track.artist.name} key={i}/>)}
-        </div>
+
 
       </div>
+      <Results results={this.state.results}/>
+    </div>
 
 
     );

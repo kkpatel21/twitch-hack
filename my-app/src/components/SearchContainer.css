@@ -22,9 +22,14 @@
   width: 6em;
   float: left;
   display: inline-block;
+  padding-right: 1em;
 }
 
 .ui.search {
   float: left;
   margin-right: 0em;
+}
+
+.ui.input>input {
+  padding: .57857143em 1.5em
 }
