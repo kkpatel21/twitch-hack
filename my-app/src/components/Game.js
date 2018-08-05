@@ -329,14 +329,15 @@ Enemy.prototype.remove = function() {
 
 var loseGame = function(){
     if (gameOver){
-      // console.log('LOST')
+      console.log('LOST')
         $('.circle').stop();
         // enemy.$div.stop();
 
         // p.$div.stop();
         window.removeEventListener('mousemove', ()=>{})
-        $('#game-board').html();
         lose();
+        // window.setTimeout(window.location.reload(), 1000)
+        $('#game-board').html();
 
     }
 };
@@ -364,6 +365,7 @@ componentDidMount(){
 
 componentWillUnmount(){
   clearInterval(this.state.intervalId)
+  // localStorage.setItem('score', this.state.timer)
   this.props.lose(this.state.timer);
 }
 timer(){
