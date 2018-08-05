@@ -16,7 +16,7 @@ export default class Results extends Component {
 
     return (
         <div className="results">
-          {this.props.results.map((song, i) => <SongTile addSong={this.props.addSong} src={song.track.release.image} title={song.track.title} artist={song.track.artist.name} key={i}/>)}
+          {this.props.results.map((song, i) => <SongTile queueSong={(a,b)=>this.props.queueSong(a,b)} src={song.track.release.image} title={song.track.title} artist={song.track.artist.name} key={i}/>)}
         </div>
     );
   }

@@ -27,10 +27,11 @@ class VideoComponent extends React.Component {
     // this.addSong = this.addSong.bind(this);
   }
 
-  queueSong(trackId) {
+  queueSong(trackId, dummy) {
     //make ajax request to get url
+    console.log('params of queuesong', trackId, dummy);
     let queue = this.state.queue.slice();
-    queue.push(/**/); //push song object
+    queue.unshift({url: trackId, name:dummy}); //push song object
     this.setState({
       queue: queue,
     })
@@ -66,8 +67,8 @@ class VideoComponent extends React.Component {
           <Grid.Column width={11}>
 
             <div className="music">
-              <SearchContainer queueSong={()=>this.queueSong()} popSong={()=>this.popSong()} delayedPop={()=>this.delayedPop()} queue={this.state.queue}/>
-
+              <SearchContainer queueSong={(a,b)=>this.queueSong(a,b)} popSong={()=>this.popSong()} delayedPop={()=>this.delayedPop()} queue={this.state.queue}/>
+              {/* <Button onClick={()=>{console.log('clicked');this.queueSong()}}>press me</Button> */}
             </div>
           </Grid.Column>
           <Grid.Column width={5}>
